@@ -31,3 +31,23 @@
   y: 75%;
   fill: white;
 }
+
+#long {
+  font-size: 16;
+  font-family: SevilleSharp-Book;
+  text-length: 16;
+  text-anchor: middle;
+  x: 20%;
+  y: 45%;
+  fill: green;
+}
+
+#lat {
+  font-size: 16;
+  font-family: SevilleSharp-Book;
+  text-length: 16;
+  text-anchor: middle;
+  x: 80%;
+  y: 45%;
+  fill: red;
+}

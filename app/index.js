@@ -8,6 +8,8 @@ import * as messaging from "messaging";
 const myTitle = document.getElementById("myTitle");
 const myBody = document.getElementById("myBody");
 const notification = document.getElementById("notification");
+const lat = document.getElementById("lat");
+const long = document.getElementById("long");
 
 myTitle.text = "Train Tracker";
 myBody.text = "Hello from Brackets!";
@@ -15,20 +17,16 @@ notification.text = "test local"
 
 // Listen for the onopen event
 messaging.peerSocket.onopen = function(){
+    notification.text = (JSON.stringify(evt.data));
 }
 
-function fetchWelcome() {
-  if (messaging.peerSocket.readyState === messaging.peerSocket.OPEN) {
-    // Send a command to the companion
-    messaging.peerSocket.send({
-      command: 'WelcomeFunction'
-    });
-  }
-}
-
+//get welcome data from the companion app
 messaging.peerSocket.onmessage = function(evt) {
-  // Output the message to the console
-  notification.text = (JSON.stringify(evt.data));
+  //Output the message to the notification element
+  
+  var data = evt.data
+  lat.text = (JSON.stringify(evt.data.lat));
+  long.text = (JSON.stringify(evt.data.long));
 }
 
 let marquee = document.getElementById("marquee");
