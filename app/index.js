@@ -15,12 +15,21 @@ notification.text = "test local"
 
 // Listen for the onopen event
 messaging.peerSocket.onopen = function(){
-};
+}
 
-notification.text = function(TestFunction){
-};
+function fetchWelcome() {
+  if (messaging.peerSocket.readyState === messaging.peerSocket.OPEN) {
+    // Send a command to the companion
+    messaging.peerSocket.send({
+      command: 'WelcomeFunction'
+    });
+  }
+}
 
-//notification.text =  messaging.peerSocket.function();
+messaging.peerSocket.onmessage = function(evt) {
+  // Output the message to the console
+  notification.text = (JSON.stringify(evt.data));
+}
 
 let marquee = document.getElementById("marquee");
 marquee.text = "Data for this application provided by Chicago Transit Authority";
