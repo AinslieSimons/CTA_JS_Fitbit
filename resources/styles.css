@@ -21,3 +21,13 @@
   y: 35%;
   fill: white;
 }
+
+#notification {
+  font-size: 27;
+  font-family: SevilleSharp-Book;
+  text-length: 32;
+  text-anchor: middle;
+  x: 50%;
+  y: 75%;
+  fill: white;
+}

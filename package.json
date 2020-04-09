@@ -1,6 +1,6 @@
 {
   "fitbit": {
-    "appUUID": "9b699090-b098-4999-8758-1559eb51f565",
+    "appUUID": "51cf124d-d552-40c2-b4dc-e1e026034056",
     "appType": "app",
     "appDisplayName": "Chicago Transit",
     "iconFile": "resources/icon.png",
@@ -22,5 +22,11 @@
   },
   "devDependencies": {
     "@fitbit/sdk": "~4.1.0"
+  },
+  "dependencies": {
+    "@fitbit/sdk-cli": "^1.7.1"
+  },
+  "scripts": {
+    "build": "fitbit-build"
   }
 }
