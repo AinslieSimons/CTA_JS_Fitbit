@@ -1,0 +1,23 @@
+.background {
+  viewport-fill: blue;
+}
+
+#myTitle {
+  font-size: 50;
+  font-family: SevilleSharp-Bold;
+  text-length: 32;
+  text-anchor: middle;
+  x: 50%;
+  y: 15%;
+  fill: #00a1de;
+}
+
+#myBody {
+  font-size: 27;
+  font-family: SevilleSharp-Book;
+  text-length: 32;
+  text-anchor: middle;
+  x: 50%;
+  y: 35%;
+  fill: white;
+}
