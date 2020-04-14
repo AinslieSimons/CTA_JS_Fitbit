@@ -11,13 +11,15 @@ const notification = document.getElementById("notification");
 const lat = document.getElementById("lat");
 const long = document.getElementById("long");
 
+console.log("app console log test")
+
 myTitle.text = "Train Tracker";
 myBody.text = "Hello from Brackets!";
 notification.text = "test local"
 
 // Listen for the onopen event
 messaging.peerSocket.onopen = function(){
-    notification.text = (JSON.stringify(evt.data));
+    //notification.text = (JSON.stringify(evt.data));
 }
 
 //get welcome data from the companion app
