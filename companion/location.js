@@ -1,23 +1,17 @@
 // Location Functions Will Go Here
 import { geolocation } from "geolocation";
 
-geolocation.getCurrentPosition(locationSuccess, locationError, {
-  timeout: 60 * 1000
-});
-
-// This function grabs the cordinates and stores them as variables
-export function locationSuccess(position) {
-    var coo_data = {
-        lat : position.coords.latitude,
-        long : position.coords.longitude
-    }
-    console.log("locationSuccess function called")
-    console.log("Current latitude is: " + coo_data.lat)
-    console.log("Current longitude is: " + coo_data.long)
-    console.log(coo_data.lat + " & " + coo_data.long)
-}
-
-function locationError(error) {
-  console.log("Error: " + error.code, "Message: " + error.message);
+export function getLocation() {
+    geolocation.getCurrentPosition(
+      (position) => {
+          console.log("Get Location: \n lat: " + position.coords.latitude + "\n long: " + position.coords.longitude)
+          let coordinates = position.coords;
+          return position;
+      }, 
+        (error) => { 
+            console.log(error)
+        return "error"
+      }, 
+        {"enableHighAccuracy" : false, "maximumAge" : 1000 * 1800});
 }
 ;

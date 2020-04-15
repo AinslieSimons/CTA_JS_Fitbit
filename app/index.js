@@ -18,18 +18,24 @@ myBody.text = "Hello from Brackets!";
 notification.text = "test local"
 
 // Listen for the onopen event
-messaging.peerSocket.onopen = function(){
-    //notification.text = (JSON.stringify(evt.data));
+messaging.peerSocket.onopen = function() {
+    console.log("peerSocket onopen")
+};
+
+/*
+messaging.peerSocket.onopen = function(evt){
+    //let data = evt.data
+    myBody.text = (JSON.stringify(evt.output_message));
 }
 
-//get welcome data from the companion app
+//get location data from the companion app
 messaging.peerSocket.onmessage = function(evt) {
   //Output the message to the notification element
-  
   var data = evt.data
   lat.text = (JSON.stringify(evt.data.lat));
   long.text = (JSON.stringify(evt.data.long));
 }
+*/
 
 let marquee = document.getElementById("marquee");
 marquee.text = "Data for this application provided by Chicago Transit Authority";
