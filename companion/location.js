@@ -4,8 +4,7 @@ import { geolocation } from "geolocation";
 export function getLocation() {
     geolocation.getCurrentPosition(
       (position) => {
-          console.log("Get Location: \n lat: " + position.coords.latitude + "\n long: " + position.coords.longitude)
-          let coordinates = position.coords;
+          console.log("Companion Location: \n lat: " + position.coords.latitude + "\n long: " + position.coords.longitude)
           return position;
       }, 
         (error) => { 

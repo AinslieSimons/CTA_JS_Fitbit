@@ -4,14 +4,13 @@ import * as messaging from "messaging";
 import { processStationList } from "./trains.js";
 
 import { getLocation } from "./location.js";
-import { getCoords } from "./location.js";
 
 // Listen for the onopen event
 messaging.peerSocket.onopen = function(){
     console.log("Hello from companion")
     getLocation();
-    messaging.peerSocket.send(processStationList());
-    getCoords();   
+    processStationList();
+    
 }
 
 /*
