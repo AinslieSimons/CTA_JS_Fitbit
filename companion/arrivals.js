@@ -18,8 +18,12 @@ export function downloadArrivals(){
     fetch(downloadUrl())
             .then((response) => {
                 return response.json();
-        })
-        .then((data) => console.log((JSON.stringify(data))));
+            })
+            .then((data) => {
+            let arrivalString = JSON.stringify(data).replace("'", "\'");
+            console.log(arrivalString)
+            return arrivalString;
+            })
 };
 
 export function currentTime(){
