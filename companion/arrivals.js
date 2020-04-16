@@ -1,6 +1,9 @@
 // arrivals functions go here
 import { accessMapID } from "./trains.js";
 
+import { localStorage } from "local-storage";
+
+
 // creates the download URL, combining various aspects that are required for CTA API
 function downloadUrl(){
     let cta_url = 'https://lapi.transitchicago.com/api/1.0/ttarrivals.aspx';
@@ -14,8 +17,6 @@ function downloadUrl(){
     return download_url
 };
 
-const jsonString = "test";
-/*
 function downloadArrivals(){
     fetch(downloadUrl())
             .then((response) => {
@@ -24,22 +25,18 @@ function downloadArrivals(){
             .then((data) => {
             let arrivalString = JSON.stringify(data).replace("'", "\'");
             let jsonString = JSON.parse(arrivalString);
-            //rootResponse = JSON.stringify(jsonString['ctatt']);
+            let rootResponse = JSON.stringify(jsonString['ctatt']);
             //console.log("logged in downloadArrivals: " + rootResponse)
-            return jsonString
+            localStorage.setItem("arrival", rootResponse);
+            //console.log(localStorage.getItem("arrival"));
+            //return rootResponse
             })  
-};*/
-
-const doStuff = async () => {
-    const response = await fetch(downloadUrl());
-    const data = await response.json();
-    console.log(data.ctatt);
-}
-
-doStuff();
+};
 
 export function timeStamp(){
-    console.log("timeStamp: " + doStuff());
+    downloadArrivals();
+    console.log("from localStorage: " + localStorage.getItem("arrival"));
+    //console.log("timeStamp: " + "left blank" )
     //let timestamp = downloadArrivals();
     //console.log(timestamp['tmst'])
 };
