@@ -17,7 +17,10 @@ function downloadUrl(){
     return download_url
 };
 
-function downloadArrivals(){
+// retrives json from cta website, regexes and sets to local storage
+// local storage so far seems best way of keeping the json data... 
+// will have to see about flushing it and refreshing etc...
+export function downloadArrivals(){
     fetch(downloadUrl())
             .then((response) => {
                 return response.json();
@@ -26,19 +29,46 @@ function downloadArrivals(){
             let arrivalString = JSON.stringify(data).replace("'", "\'");
             let jsonString = JSON.parse(arrivalString);
             let rootResponse = JSON.stringify(jsonString['ctatt']);
-            //console.log("logged in downloadArrivals: " + rootResponse)
             localStorage.setItem("arrival", rootResponse);
             //console.log(localStorage.getItem("arrival"));
-            //return rootResponse
             })  
 };
 
+// extracts the timeStamp from the arrival json array
 export function timeStamp(){
-    downloadArrivals();
-    console.log("from localStorage: " + localStorage.getItem("arrival"));
-    //console.log("timeStamp: " + "left blank" )
-    //let timestamp = downloadArrivals();
-    //console.log(timestamp['tmst'])
+    let timeString = JSON.parse(localStorage.getItem("arrival"));
+    timeString = timeString['tmst']
+    timeString = Date.parse(timeString)
+    //console.log("Time Stamp: " + timeString)
+    return timeString
+};
+
+// calculates arrival times of trains coming into station
+export function arrivalTimes(){
+    let estimateArr = JSON.parse(localStorage.getItem("arrival"));
+    estimateArr = estimateArr['eta']
+    Object.entries(estimateArr).forEach(
+        ([key, value]) => {
+            let stationTime = value['arrT']//.substr(11, 18);
+            stationTime = Date.parse(stationTime)
+            if (timeStamp() < stationTime) {
+                if ((stationTime - timeStamp()/1000) < 60 ) {
+                    console.log("Train to: " + value['destNm'] + " arriving now")
+                }
+                else { 
+                    let arrivalMins = ((stationTime - timeStamp())/60000)
+                    console.log("Train to: " + value['destNm'] + " arrives in " + Math.round(arrivalMins) + " mins")}
+            }
+            else { console.log("train slow ")}
+        }
+        
+        /*
+        if (timeStamp() < value['arrT'].substr(11, 18)) {
+            let minsToArrival = value['arrT'].substr(11, 18) - timeStamp,
+            console.log("Next Train: " + value['destNm'] + " in " + minsToArrival + "mins")
+        };*/
+        //console.log("Next Train: " + value['destNm'] + " at "+ value['arrT'].substr(11, 18))
+    );
 };
 
 export function currentTime(){

@@ -7,9 +7,10 @@ import { distanceCalcExec } from "./distance.js";
 import { exportLat } from "./location.js";
 import { exportLong } from "./location.js";
 
+import { downloadArrivals } from "./arrivals.js";
 import { currentTime } from "./arrivals.js";
 import { timeStamp } from "./arrivals.js";
-//import { downloadArrivals } from "./arrivals.js";
+import { arrivalTimes } from "./arrivals.js";
 
 // Listen for the onopen event
 messaging.peerSocket.onopen = function(){
@@ -17,11 +18,10 @@ messaging.peerSocket.onopen = function(){
     console.log("Companion is at latitude " + exportLat() + " and longitude " + exportLong())
     processStationList();
     distanceCalcExec();
+    downloadArrivals();
     currentTime();
-    //downloadArrivals();
     timeStamp();
-    
-    
+    arrivalTimes();
 }
 
 /*
