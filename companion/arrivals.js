@@ -14,7 +14,8 @@ function downloadUrl(){
     return download_url
 };
 
-
+const jsonString = "test";
+/*
 function downloadArrivals(){
     fetch(downloadUrl())
             .then((response) => {
@@ -23,14 +24,22 @@ function downloadArrivals(){
             .then((data) => {
             let arrivalString = JSON.stringify(data).replace("'", "\'");
             let jsonString = JSON.parse(arrivalString);
-            const rootResponse = JSON.stringify(jsonString['ctatt']);
-            //console.log(rootResponse)
-            return rootResponse;
-            })
-};
+            //rootResponse = JSON.stringify(jsonString['ctatt']);
+            //console.log("logged in downloadArrivals: " + rootResponse)
+            return jsonString
+            })  
+};*/
+
+const doStuff = async () => {
+    const response = await fetch(downloadUrl());
+    const data = await response.json();
+    console.log(data.ctatt);
+}
+
+doStuff();
 
 export function timeStamp(){
-    console.log("timeStamp: " + downloadArrivals());
+    console.log("timeStamp: " + doStuff());
     //let timestamp = downloadArrivals();
     //console.log(timestamp['tmst'])
 };

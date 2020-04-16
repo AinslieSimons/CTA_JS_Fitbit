@@ -9,6 +9,7 @@ import { exportLong } from "./location.js";
 
 import { currentTime } from "./arrivals.js";
 import { timeStamp } from "./arrivals.js";
+//import { downloadArrivals } from "./arrivals.js";
 
 // Listen for the onopen event
 messaging.peerSocket.onopen = function(){
@@ -17,7 +18,10 @@ messaging.peerSocket.onopen = function(){
     processStationList();
     distanceCalcExec();
     currentTime();
+    //downloadArrivals();
     timeStamp();
+    
+    
 }
 
 /*
