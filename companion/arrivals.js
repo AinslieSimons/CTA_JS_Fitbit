@@ -6,7 +6,7 @@ function downloadUrl(){
     let cta_url = 'https://lapi.transitchicago.com/api/1.0/ttarrivals.aspx';
     let key_string = "6bae14d391f34dde9d9cc288fbb2a075";
     let output_type = '&outputType=JSON';
-    let map_id = '&mapid=' +accessMapID();
+    let map_id = '&mapid=' + accessMapID();
     console.log("map_ID = " + map_id)
     let url_key = cta_url + '?key=' + key_string;
     let download_url = url_key + map_id + output_type
@@ -14,16 +14,25 @@ function downloadUrl(){
     return download_url
 };
 
-export function downloadArrivals(){
+
+function downloadArrivals(){
     fetch(downloadUrl())
             .then((response) => {
                 return response.json();
             })
             .then((data) => {
             let arrivalString = JSON.stringify(data).replace("'", "\'");
-            console.log(arrivalString)
-            return arrivalString;
+            let jsonString = JSON.parse(arrivalString);
+            const rootResponse = JSON.stringify(jsonString['ctatt']);
+            //console.log(rootResponse)
+            return rootResponse;
             })
+};
+
+export function timeStamp(){
+    console.log("timeStamp: " + downloadArrivals());
+    //let timestamp = downloadArrivals();
+    //console.log(timestamp['tmst'])
 };
 
 export function currentTime(){

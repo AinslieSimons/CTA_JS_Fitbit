@@ -14,7 +14,7 @@ export function accessStation(){
 
 export function accessMapID(){
     return list['map_id'][ts];
-};
+}; 
 
 // export lat and long for test station
 export function accessLat(){
