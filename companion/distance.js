@@ -6,6 +6,8 @@ import { accessStation } from "./trains.js";
 import { exportLat } from "./location.js";
 import { exportLong } from "./location.js";
 
+import { localStorage } from "local-storage";
+
 // distcalc stuff 
   var EARTH_RADIUS = 6378137; //meters
   var RADIANS_PER_DEGREE = Math.PI / 180;
@@ -30,7 +32,7 @@ import { exportLong } from "./location.js";
       return degrees * metersPerDegree;
   }
   
-  //export function distance(userLat, userLong, stationLat, stationLong)
+// execute distance calculation
 function distance(userLat, userLong, stationLat, stationLong) {
     var R = 6371; // Radius of the earth in km
     var dLat = deg2rad(stationLat - userLat); // deg2rad below
@@ -43,11 +45,11 @@ function distance(userLat, userLong, stationLat, stationLong) {
     var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     var d = R * c; // Distance in km
     console.log("Distance to " + accessStation() + " is " + Math.round(d*1000) + " meters")
+    localStorage.setItem("distance", (accessStation() + " " + Math.round(d*1000) + "m away"))
     return d;
 }
 
-// execute distance calculation test
-
+//initiates the distance calculation to provide distance between companion and station
 export function distanceCalcExec(){
     distance(exportLat(), exportLong(), accessLat(), accessLong());
 };

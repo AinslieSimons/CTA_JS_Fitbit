@@ -1,12 +1,14 @@
 // messaging functions go here
 import * as messaging from "messaging";
+import { localStorage } from "local-storage";
 
 // Ready to send messages
 export function sendMessage() {
         // Test data
         let data = {
-        title: "Hello From Companion",
-        body: "communication is working"
+        train_0: localStorage.getItem("arrivals_0"),
+        train_1: localStorage.getItem("arrivals_1"),
+        distance: localStorage.getItem("distance")
         }
 
         if (messaging.peerSocket.readyState === messaging.peerSocket.OPEN) {

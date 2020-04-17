@@ -1,6 +1,5 @@
 // arrivals functions go here
 import { accessMapID } from "./trains.js";
-
 import { localStorage } from "local-storage";
 
 
@@ -44,21 +43,33 @@ export function timeStamp(){
 
 // calculates arrival times of trains coming into station
 export function arrivalTimes(){
+    let counter = 0; 
     let estimateArr = JSON.parse(localStorage.getItem("arrival"));
     estimateArr = estimateArr['eta']
     Object.entries(estimateArr).forEach(
         ([key, value]) => {
             let stationTime = value['arrT']
             stationTime = Date.parse(stationTime)
+            
             if (timeStamp() < stationTime) {
-                if ((stationTime - timeStamp()/1000) < 120 ) {
-                    console.log("Train to: " + value['destNm'] + " arriving now")
+                               
+                if (((stationTime - timeStamp())/1000) < 60 ) {
+                    localStorage.setItem("arrivals_" + counter, value['destNm'] + " arriving now");
+                    console.log(localStorage.getItem("arrivals_" + counter))
+                    console.log(counter)
+                    counter++
+                    //console.log("Train to: " + value['destNm'] + " arriving now")
                 }
                 else { 
                     let arrivalMins = ((stationTime - timeStamp())/60000)
-                    console.log("Train to: " + value['destNm'] + " arrives in " + Math.round(arrivalMins) + " mins")}
+                    localStorage.setItem("arrivals_" + counter, value['destNm'] + " in " + Math.round(arrivalMins) + " mins");
+                    console.log(localStorage.getItem("arrivals_" + counter))
+                    console.log(counter)
+                    counter++
+                    //console.log("Train to: " + value['destNm'] + " arrives in " + Math.round(arrivalMins) + " mins")
+                }
             }
-            else { console.log("Train to: " + value['destNm'] + " running slow ")}
+            else { console.log(value['destNm'] + " running slow ")}
         }
     );
 };

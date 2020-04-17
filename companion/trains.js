@@ -6,7 +6,7 @@ let json = '{"stop_id":{"0":30162,"1":30161,"2":30022,"3":30023,"4":30214,"5":30
 let list = JSON.parse(json);
 
 // test tstation
-let ts = 160 // test station
+let ts = 188 // test station
 
 export function accessStation(){
     return list['station_name'][ts];

@@ -20,10 +20,12 @@ function locationError(error) {
 
 // exports lat and long variables 
 export function exportLat(position){
+    console.log("Lat Test: " + lat)
     return lat;
 };
 
 export function exportLong(position){
+    console.log("Long Test: " + long)
     return long;
 };
 ;
