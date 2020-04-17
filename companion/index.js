@@ -12,24 +12,26 @@ import { currentTime } from "./arrivals.js";
 import { timeStamp } from "./arrivals.js";
 import { arrivalTimes } from "./arrivals.js";
 
+import { sendMessage } from "./messaging.js";
+
+console.log("Companion is at latitude " + exportLat() + " and longitude " + exportLong())
+processStationList();
+distanceCalcExec();
+downloadArrivals();
+currentTime();
+timeStamp();
+arrivalTimes();
+
 // Listen for the onopen event
-messaging.peerSocket.onopen = function(){
-    console.log("Hello from companion")
-    console.log("Companion is at latitude " + exportLat() + " and longitude " + exportLong())
-    processStationList();
-    distanceCalcExec();
-    downloadArrivals();
-    currentTime();
-    timeStamp();
-    arrivalTimes();
+messaging.peerSocket.onopen = function() {
+    sendMessage();
 }
 
 /*
-function to send welcome message
-function WelcomeFunction(){
+messaging.peerSocket.onopen = function (WelcomeFunction){
     console.log("welcome function")
-    var welcome = "Test 2.0"
-    messaging.peerSocket.send(welcome);
-}*/
-;
+    var welcome = "Hello from companion"
+    return messaging.peerSocket.send(welcome);
+};*/
 
+;

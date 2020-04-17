@@ -39,7 +39,6 @@ export function timeStamp(){
     let timeString = JSON.parse(localStorage.getItem("arrival"));
     timeString = timeString['tmst']
     timeString = Date.parse(timeString)
-    //console.log("Time Stamp: " + timeString)
     return timeString
 };
 
@@ -49,25 +48,18 @@ export function arrivalTimes(){
     estimateArr = estimateArr['eta']
     Object.entries(estimateArr).forEach(
         ([key, value]) => {
-            let stationTime = value['arrT']//.substr(11, 18);
+            let stationTime = value['arrT']
             stationTime = Date.parse(stationTime)
             if (timeStamp() < stationTime) {
-                if ((stationTime - timeStamp()/1000) < 60 ) {
+                if ((stationTime - timeStamp()/1000) < 120 ) {
                     console.log("Train to: " + value['destNm'] + " arriving now")
                 }
                 else { 
                     let arrivalMins = ((stationTime - timeStamp())/60000)
                     console.log("Train to: " + value['destNm'] + " arrives in " + Math.round(arrivalMins) + " mins")}
             }
-            else { console.log("train slow ")}
+            else { console.log("Train to: " + value['destNm'] + " running slow ")}
         }
-        
-        /*
-        if (timeStamp() < value['arrT'].substr(11, 18)) {
-            let minsToArrival = value['arrT'].substr(11, 18) - timeStamp,
-            console.log("Next Train: " + value['destNm'] + " in " + minsToArrival + "mins")
-        };*/
-        //console.log("Next Train: " + value['destNm'] + " at "+ value['arrT'].substr(11, 18))
     );
 };
 

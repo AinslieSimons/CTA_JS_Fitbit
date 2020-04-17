@@ -15,27 +15,31 @@ console.log("app console log test")
 
 myTitle.text = "Train Tracker";
 myBody.text = "Hello from Brackets!";
-notification.text = "test local"
+notification.text = "test local";
 
+// initiate message open
 // Listen for the onopen event
 messaging.peerSocket.onopen = function() {
-    console.log("peerSocket onopen")
-};
-
-/*
-messaging.peerSocket.onopen = function(evt){
-    //let data = evt.data
-    myBody.text = (JSON.stringify(evt.output_message));
+  // Ready to send or receive messages
 }
 
+// recieve messages
+messaging.peerSocket.onmessage = function(evt) {
+    let data = evt.data
+    myBody.text = (JSON.stringify(data.title));
+    notification.text = (JSON.stringify(data.body));
+    console.log(JSON.stringify(evt.data));
+}
+
+/*
 //get location data from the companion app
 messaging.peerSocket.onmessage = function(evt) {
   //Output the message to the notification element
-  var data = evt.data
+  let data = evt.data
   lat.text = (JSON.stringify(evt.data.lat));
   long.text = (JSON.stringify(evt.data.long));
-}
-*/
+}*/
+
 
 let marquee = document.getElementById("marquee");
 marquee.text = "Data for this application provided by Chicago Transit Authority";
@@ -43,3 +47,4 @@ marquee.text = "Data for this application provided by Chicago Transit Authority"
 setTimeout(function() {
   marquee.state = "enabled";
 }, 500);
+;
