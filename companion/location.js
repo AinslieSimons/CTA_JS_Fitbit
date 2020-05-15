@@ -1,5 +1,6 @@
 // Location Functions Will Go Here
 import { geolocation } from "geolocation";
+import { localStorage } from "local-storage";
 
 geolocation.getCurrentPosition(locationSuccess, locationError, {
   timeout: 60 * 1000
@@ -10,12 +11,14 @@ let lat;
 let long;
 
 function locationSuccess(position) {
-  lat = position.coords.latitude,
-  long = position.coords.longitude
+    localStorage.setItem("latStore", position.coords.latitude);
+    localStorage.setItem("longStore", position.coords.longitude);
+    lat = position.coords.latitude,
+    long = position.coords.longitude
 };
 
 function locationError(error) {
-  console.log("Error: " + error.code, "Message: " + error.message);
+    console.log("Error: " + error.code, "Message: " + error.message)
 }
 
 // exports lat and long variables 

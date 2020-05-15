@@ -8,6 +8,8 @@ export function sendMessage() {
         let data = {
         train_0: localStorage.getItem("arrivals_0"),
         train_1: localStorage.getItem("arrivals_1"),
+        train_2: localStorage.getItem("arrivals_2"),
+        train_3: localStorage.getItem("arrivals_3"),
         distance: localStorage.getItem("distance")
         }
 

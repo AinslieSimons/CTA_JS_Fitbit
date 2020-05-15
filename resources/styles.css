@@ -18,7 +18,7 @@
   text-length: 32;
   text-anchor: middle;
   x: 50%;
-  y: 32%;
+  y: 30%;
   fill: white;
 }
 
@@ -28,7 +28,27 @@
   text-length: 32;
   text-anchor: middle;
   x: 50%;
-  y: 42%;
+  y: 41%;
+  fill: white;
+}
+
+#train_2 {
+  font-size: 27;
+  font-family: SevilleSharp-Book;
+  text-length: 32;
+  text-anchor: middle;
+  x: 50%;
+  y: 52%;
+  fill: white;
+}
+
+#train_3 {
+  font-size: 27;
+  font-family: SevilleSharp-Book;
+  text-length: 32;
+  text-anchor: middle;
+  x: 50%;
+  y: 63%;
   fill: white;
 }
 
@@ -38,7 +58,7 @@
   text-length: 32;
   text-anchor: middle;
   x: 50%;
-  y: 75%;
+  y: 77%;
   fill: white;
 }
 

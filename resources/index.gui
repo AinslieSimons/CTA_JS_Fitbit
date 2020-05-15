@@ -2,6 +2,8 @@
   <text id="myTitle" />
   <text id="train_0" />
   <text id="train_1" />
+  <text id="train_2" />
+  <text id="train_3" />
   <text id="notification"/>
   <text id="lat" />
   <text id="long" />

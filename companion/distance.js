@@ -53,4 +53,65 @@ function distance(userLat, userLong, stationLat, stationLong) {
 export function distanceCalcExec(){
     distance(exportLat(), exportLong(), accessLat(), accessLong());
 };
+
+import { list } from "./trains"
+
+console.log("list test: " + list.station_name[160])
+console.log("list test: " + list.lat[160])
+console.log("list test: " + list.long[160])
+console.log("list test: " + list.lat.length)
+
+function distanceTest(userLat, userLong, stationLat, stationLong, statNum) {
+            var R = 6371; // Radius of the earth in km
+            var dLat = deg2rad(stationLat - userLat); // deg2rad below
+            var dLon = deg2rad(stationLong - userLong);
+            var a =
+            Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+            Math.cos(deg2rad(userLat)) * Math.cos(deg2rad(stationLat)) *
+            Math.sin(dLon / 2) * Math.sin(dLon / 2);
+
+            var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+            var d = R * c; // Distance in km
+            console.log("Distance to station is: " + Math.round(d*1000) + " meters")
+        
+}
+
+export function calculateClosestStation() {
+    let counter = 0;
+    let loclat = localStorage.getItem("latStore");
+    let loclong = localStorage.getItem("longStore");
+    let distanceArray = [];
+    while (counter < 300) {
+            let listlat = list.lat[counter];
+            let listlong = list.long[counter];
+            var R = 6371; // Radius of the earth in km
+            var dLat = deg2rad(listlat - loclat); // deg2rad below
+            var dLon = deg2rad(listlong - loclong);
+            var a =
+            Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+            Math.cos(deg2rad(loclat)) * Math.cos(deg2rad(listlat)) *
+            Math.sin(dLon / 2) * Math.sin(dLon / 2);
+
+            var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+            var d = R * c; // Distance in km
+            //console.log(counter + " Distance to " + list.station_name[counter] + " is: " + Math.round(d*1000) + " meters")
+            distanceArray.push(d);
+            counter++;
+        }
+    let closestDistance = Math.min.apply(null, distanceArray);
+    let closestStation = (distanceArray.indexOf(closestDistance));
+    let outputString = list.station_name[closestStation] + " is " + Math.round(closestDistance*1000) + " meters away";
+    console.log("Min distance calc test: " + list.station_name[closestStation] + " is " + Math.round(closestDistance*1000) + " meters away")
+    localStorage.setItem("closestID", closestStation)
+    localStorage.setItem("closestName", list.station_name[closestStation])
+    localStorage.setItem("closestMeters", Math.round(closestDistance*1000))
+    localStorage.setItem("closeStationString", outputString);
+    console.log(localStorage.getItem("closestID"))
+    console.log(localStorage.getItem("closestName"))
+    console.log(localStorage.getItem("closeStationString"))
+    console.log(localStorage.getItem("closestMeters"))
+    
+}
+
+
 ;

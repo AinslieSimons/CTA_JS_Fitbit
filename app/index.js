@@ -8,6 +8,9 @@ import * as messaging from "messaging";
 const myTitle = document.getElementById("myTitle");
 const train_0 = document.getElementById("train_0");
 const train_1 = document.getElementById("train_1");
+const train_2 = document.getElementById("train_2");
+const train_3 = document.getElementById("train_3");
+
 const notification = document.getElementById("notification");
 const lat = document.getElementById("lat");
 const long = document.getElementById("long");
@@ -27,9 +30,11 @@ messaging.peerSocket.onopen = function() {
 // recieve messages
 messaging.peerSocket.onmessage = function(evt) {
     let data = evt.data
-    train_0.text = (JSON.stringify(data.train_0));
-    train_1.text = (JSON.stringify(data.train_1));
-    notification.text = (JSON.stringify(data.distance));
+    train_0.text = data.train_0;
+    train_1.text = data.train_1;
+    train_2.text = data.train_2;
+    train_3.text = data.train_3;
+    notification.text = data.distance;
     console.log(JSON.stringify(evt.data));
 }
 
