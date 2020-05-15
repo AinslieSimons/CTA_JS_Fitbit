@@ -10,21 +10,17 @@ import { timeStamp } from "./arrivals.js";
 import { arrivalTimes } from "./arrivals.js";
 import { sendMessage } from "./messaging.js";
 import { downloadUrl } from "./arrivals.js";
-
 import { calculateClosestStation } from "./distance"
 
 // Listen for the onopen event
 messaging.peerSocket.onopen = function() {
-    distanceCalcExec();
+    //distanceCalcExec();
+    calculateClosestStation();
+    processStationList();
+    currentTime();
+    downloadUrl();
+    timeStamp();
+    arrivalTimes();
     sendMessage();
 }
-
-calculateClosestStation();
-currentTime();
-downloadUrl();
-timeStamp();
-arrivalTimes();
-
-//processStationList();
-
 ;

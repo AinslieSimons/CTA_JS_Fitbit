@@ -17,7 +17,7 @@ const long = document.getElementById("long");
 
 console.log("app console log test")
 
-myTitle.text = "Train Tracker";
+myTitle.text = "L Train Tracker";
 train_0.text = "Waiting for Train Times";
 notification.text = "Waiting for Distance Data";
 

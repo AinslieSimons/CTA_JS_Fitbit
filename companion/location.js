@@ -13,8 +13,8 @@ let long;
 function locationSuccess(position) {
     localStorage.setItem("latStore", position.coords.latitude);
     localStorage.setItem("longStore", position.coords.longitude);
-    lat = position.coords.latitude,
-    long = position.coords.longitude
+    lat = position.coords.latitude;
+    long = position.coords.longitude;
 };
 
 function locationError(error) {
@@ -31,4 +31,5 @@ export function exportLong(position){
     console.log("Long Test: " + long)
     return long;
 };
+
 ;

@@ -6,30 +6,34 @@ let json = '{"stop_id":{"0":30162,"1":30161,"2":30022,"3":30023,"4":30214,"5":30
 export let list = JSON.parse(json);
 
 // test station
-let ts = parseInt(localStorage.getItem("closestID")) // test station
-//let ts = 160;
+function getTS(){
+    let ts = parseInt(localStorage.getItem("closestID")) // test station
+    return ts
+};
 
 export function accessStation(){
-    return list['station_name'][ts];
+    console.log("accessStation " + list['station_name'][getTS()]);
+    return list['station_name'][getTS()];
 };
 
 export function accessMapID(){
-    return list['map_id'][ts];
+    console.log("accessMapID " + list['map_id'][getTS()] + " name = " + list['station_name'][getTS()]);
+    return list['map_id'][getTS()];
 }; 
 
 // export lat and long for test station
 export function accessLat(){
-    return list['lat'][ts];
+    return list['lat'][getTS()];
 };
 
 export function accessLong(){
-    return list['long'][ts];
+    return list['long'][getTS()];
 };
 
 // access stations and attributes
 export function processStationList() {
-        console.log("Station List contains the keys: " + Object.keys(list)); 
-        console.log("Test Station: " + list['station_name'][ts] + " Lat: " + list['lat'][ts] + " Long: " + list['long'][ts]);
+        console.log("processStationList contains the keys: " + Object.keys(list)); 
+        console.log("processStationList Station: " + list['station_name'][getTS()] + " Lat: " + list['lat'][getTS()] + " Long: " + list['long'][getTS()]);
         let output_station = list['station_name'][0];
         let output_message = "Nearest Station " + output_station
         return output_message;
