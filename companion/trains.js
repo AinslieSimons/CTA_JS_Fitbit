@@ -17,6 +17,7 @@ export function accessStation(){
 };
 
 export function accessMapID(){
+    console.log("closest ID: " + localStorage.getItem("closestID"))
     console.log("accessMapID " + list['map_id'][getTS()] + " name = " + list['station_name'][getTS()]);
     return list['map_id'][getTS()];
 }; 

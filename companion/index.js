@@ -13,14 +13,16 @@ import { downloadUrl } from "./arrivals.js";
 import { calculateClosestStation } from "./distance"
 
 // Listen for the onopen event
-messaging.peerSocket.onopen = function() {
+messaging.peerSocket.onopen = async function() {
     //distanceCalcExec();
     calculateClosestStation();
     processStationList();
     currentTime();
-    downloadUrl();
-    timeStamp();
-    arrivalTimes();
+    //downloadUrl();
+    //timeStamp();
+    await arrivalTimes();
     sendMessage();
+    //localStorage.clear();
+    
 }
 ;
