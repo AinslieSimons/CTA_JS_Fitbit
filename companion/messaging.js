@@ -20,7 +20,7 @@ export function sendMessage() {
             console.log("message_2: " + localStorage.getItem("arrivals_2"));
             console.log("message_3: " + localStorage.getItem("arrivals_3"));
             messaging.peerSocket.send(data);
-            localStorage.clear();
+            //localStorage.clear();
         }
 };
 ;

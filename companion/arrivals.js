@@ -5,7 +5,6 @@ import { calculateClosestStation } from "./distance"
 
 
 // sets the download_url with the current station ID
-
 function initUrl(){
     let cta_url = 'https://lapi.transitchicago.com/api/1.0/ttarrivals.aspx';
     let key_string = "6bae14d391f34dde9d9cc288fbb2a075";

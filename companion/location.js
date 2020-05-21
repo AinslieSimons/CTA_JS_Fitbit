@@ -10,9 +10,11 @@ geolocation.getCurrentPosition(locationSuccess, locationError, {
 let lat;
 let long;
 
-function locationSuccess(position) {
+export function locationSuccess(position) {
     localStorage.setItem("latStore", position.coords.latitude);
     localStorage.setItem("longStore", position.coords.longitude);
+    console.log("Lat: " + localStorage.getItem("latStore"))
+    console.log("Long: " + localStorage.getItem("longStore"))
     lat = position.coords.latitude;
     long = position.coords.longitude;
 };
